@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mongo-rs01:
+    image: 'mongo-start'
+    build: ./mongo-rs01
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo-rs01/data:/data/db
+    depends_on:
+      - 'mongo-rs02'
+      - 'mongo-rs03'
+
+  mongo-rs02:
+    image: 'mongo'
+    command: --replSet rs0 --smallfiles --oplogSize 128
+    ports:
+      - '27018:27017'
+    volumes:
+      - ./mongo-rs02/data:/data/db
+
+  mongo-rs03:
+    image: 'mongo'
+    command: --replSet rs0 --smallfiles --oplogSize 128
+    ports:
+      - '27019:27017'
+    volumes:
+      - ./mongo-rs03/data:/data/db
+  setup-rs:
+    image: 'setup-rs'
+    build: ./setup
+    depends_on:
+      - 'mongo-rs01'
+  web-app:
+    image: rest-api-node-mongo-project
+    build: ./projet_mongo
+    ports:
+      - '3000:3000'
+    depends_on:
+      - 'setup-rs'
