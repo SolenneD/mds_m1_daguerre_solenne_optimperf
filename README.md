@@ -1,12 +1,17 @@
 # Optimisation et Performance
 
+
+### Docker
+- Installer Docker
+- `docker-compose up --build`
+
+
 ### MongoDB Atlas
 - Créer un Projet
 - Construire un nouveau cluster
 - Sélectionner une instance gratuite de 512MO (Ireland)
 - Créer un nom utilisateur / mot de passe pour se connecter avec notre application REST dans **Databas Access** et un nouvel IP dans **Network Acess** avec *Add current IP Adress*
 - Cliquer sur **Connect** dans **Clusters**, cliquer sur *Connect your Application* et copier coller le lien du "Connection String Only" dans *db.js* en faisant attention a bien sélectionner la VERSION de Node.js
-
 
 
 ### Installer le projet
